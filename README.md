@@ -44,6 +44,8 @@ python scripts/preview.py
 
 `dist/` 中的文件对应目标仓库根目录。根目录已有的 `index.html` 占位文件需要由本项目首页替换。`.nojekyll` 避免 GitHub Pages 的 Jekyll 处理静态目录。这里不需要改动 GitHub Actions 或配置秘钥。
 
+公开发布使用仓库的 Pages 分支来源；站点文件由 `dist/` 固定清单整理，来源项目的服务不参与构建。
+
 发布前请检查 `dist/` 的文件清单和 `content/catalog.json` 的引用；不要把 `research/` 或用户目录中的原始文档同步到公开仓库。目录 `assets/vendor/` 包含 Marked、DOMPurify、highlight.js 的固定版本及许可证；`assets/` 含 Barlow Condensed 字体和 Unsplash 示例摄影。
 
 ## 内容与核对范围
