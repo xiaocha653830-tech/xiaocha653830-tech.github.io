@@ -1,1 +1,60 @@
-print"Hello World"
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f9f9f5">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <meta name="description" content="在场技术博客：从本地源码与学习笔记出发，记录 RAG、Agent 工作流、数据工程和 Python 工具的实现与取舍。">
+  <title>在场 Tech Notes — 技术博客</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./assets/vendor/highlight.css">
+  <link rel="stylesheet" href="./technical.css">
+  <script src="./assets/vendor/marked.min.js" defer></script>
+  <script src="./assets/vendor/purify.min.js" defer></script>
+  <script src="./assets/vendor/highlight.min.js" defer></script>
+  <script src="./content.generated.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand flex items-center justify-between" href="#/" aria-label="在场，返回首页">
+      <span>在场 <span class="brand-en">TECH NOTES</span></span>
+      <span class="brand-symbol" aria-hidden="true">↗</span>
+    </a>
+    <div class="header-right flex items-center">
+      <form class="search-form flex items-center" role="search">
+        <label for="site-search">搜索</label>
+        <input id="site-search" type="search" placeholder="搜索文章、技术标签与正文..." autocomplete="off">
+        <button type="submit" aria-label="搜索文章"><i class="fa fa-search" aria-hidden="true"></i></button>
+      </form>
+      <button class="menu-button" aria-label="打开导航" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+    </div>
+  </header>
+  <nav id="main-nav" class="main-nav" aria-label="主导航">
+    <div class="nav-links flex items-center">
+      <a href="#/" data-nav="home"><span class="nav-square"></span>首页 <span class="latin">Home</span></a>
+      <a href="#/archive" data-nav="archive"><span class="nav-square"></span>文章 <span class="latin">Journal</span></a>
+      <a href="#/topics" data-nav="topics"><span class="nav-square"></span>专题 <span class="latin">Topics</span></a>
+      <a href="#/projects" data-nav="projects"><span class="nav-square"></span>项目 <span class="latin">Projects</span></a>
+      <a href="#/about" data-nav="about"><span class="nav-square"></span>关于 <span class="latin">About</span></a>
+    </div>
+    <span class="nav-note">学习、实践、持续记录 <span class="status-dot"></span></span>
+  </nav>
+  <div id="reading-progress" role="progressbar" aria-label="文章阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" hidden></div>
+  <main id="main" tabindex="-1"></main>
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a class="footer-brand" href="#/">在场 <span class="latin">Tech Notes</span></a>
+      <p>读源码，做实践。<br>让经验成为下一次的起点。</p>
+      <a class="footer-link" href="#/about">认识这个博客 <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="footer-bottom flex justify-between"><span>© 2026 在场 · 技术博客</span><span>源自笔记与代码 / 首页摄影来自 Unsplash</span><button id="back-top">回到顶部 ↑</button></div>
+  </footer>
+  <div id="toast" role="status" hidden></div>
+  <noscript><p class="noscript">请启用 JavaScript，以浏览技术文章、专题与项目。</p></noscript>
+</body>
+</html>

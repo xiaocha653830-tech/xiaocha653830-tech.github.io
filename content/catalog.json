@@ -1,0 +1,414 @@
+{
+  "updated": "2026-10-20",
+  "topics": [
+    {
+      "id": "rag",
+      "name": "RAG 与检索",
+      "english": "Retrieval",
+      "symbol": "R",
+      "description": "从文档导入到证据排序，沿着数据流理解知识库。",
+      "articles": [
+        "rag-pipelines",
+        "chunk-contract",
+        "rrf-rerank"
+      ]
+    },
+    {
+      "id": "agent",
+      "name": "Agent 工作流",
+      "english": "Agent workflows",
+      "symbol": "A",
+      "description": "状态、人工介入与元数据，把智能体的边界说清楚。",
+      "articles": [
+        "langgraph-interrupt",
+        "metadata-boundaries"
+      ]
+    },
+    {
+      "id": "engineering",
+      "name": "数据工程",
+      "english": "Data engineering",
+      "symbol": "E",
+      "description": "投递、执行、编码与回读，从失败路径理解可靠性。",
+      "articles": [
+        "outbox-fencing",
+        "unicode-roundtrip"
+      ]
+    },
+    {
+      "id": "python",
+      "name": "Python 工具",
+      "english": "Python tooling",
+      "symbol": "P",
+      "description": "把重复劳动写成工具，也把工具的适用范围记录下来。",
+      "articles": [
+        "docx-markdown"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "knowledge-base",
+      "name": "知识库检索管线",
+      "path": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase",
+      "status": "源码结构已核对",
+      "description": "文档导入与查询双图，涉及 Milvus、HyDE、RRF 和模型重排。本次整理聚焦数据契约与版本差异。",
+      "stack": [
+        "Python",
+        "LangGraph",
+        "Milvus"
+      ],
+      "articles": [
+        "rag-pipelines",
+        "chunk-contract",
+        "rrf-rerank"
+      ]
+    },
+    {
+      "id": "etl-agent",
+      "name": "ETL-Agent",
+      "path": "https://github.com/xiaocha653830-tech/ETL-Agent",
+      "status": "局部实现核对",
+      "description": "自然语言数据集成控制面，本文选取运行投递、租约守卫和规则回读。README 的历史测试记录与本次静态核对分别注明。",
+      "stack": [
+        "FastAPI",
+        "SQLAlchemy",
+        "Celery"
+      ],
+      "articles": [
+        "outbox-fencing",
+        "unicode-roundtrip"
+      ]
+    },
+    {
+      "id": "deep-agent",
+      "name": "数据智能体骨架",
+      "path": "https://github.com/xiaocha653830-tech/Deep-Agent",
+      "status": "骨架 / 待实现",
+      "description": "已有多存储客户端与仓储边界，元数据构建方法仍为日志骨架。整理其设计意图与下一步需要补齐的闭环。",
+      "stack": [
+        "MySQL",
+        "Qdrant",
+        "Elasticsearch"
+      ],
+      "articles": [
+        "metadata-boundaries"
+      ]
+    },
+    {
+      "id": "docx-tools",
+      "name": "文档整理工具",
+      "path": "https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io/tree/main/content/references",
+      "status": "工具源码已核对",
+      "description": "按顺序转换 Word 段落与表格，识别代码样式并生成 Markdown；同时记录标题识别、图片与质量检查的限制。",
+      "stack": [
+        "Python",
+        "python-docx",
+        "Markdown"
+      ],
+      "articles": [
+        "docx-markdown"
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "id": "rag-pipelines",
+      "title": "RAG 双管线：从文档导入到四路检索",
+      "summary": "对照当前代码重新画出知识库的数据流，修正旧笔记中的节点数量、共享状态与断点恢复假设。",
+      "category": "RAG 与检索",
+      "topic": "rag",
+      "tags": [
+        "RAG",
+        "LangGraph",
+        "架构设计"
+      ],
+      "kind": "源码解读",
+      "date": "2026-10-20",
+      "order": 1,
+      "level": "进阶",
+      "status": "已核对源码",
+      "scope": "静态核对当前图结构与字段流向，未运行模型或数据库。",
+      "sources": [
+        {
+          "path": "app/import_process/agent/main_graph.py",
+          "start": 18,
+          "end": 68,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/import_process/agent/main_graph.py#L18-L68"
+        },
+        {
+          "path": "app/import_process/agent/state.py",
+          "start": 5,
+          "end": 66,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/import_process/agent/state.py#L5-L66"
+        },
+        {
+          "path": "app/query_process/agent/main_graph.py",
+          "start": 18,
+          "end": 86,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/query_process/agent/main_graph.py#L18-L86"
+        }
+      ]
+    },
+    {
+      "id": "outbox-fencing",
+      "title": "Outbox 与租约守卫：让后台任务有据可查",
+      "summary": "消息为什么会重复投递，旧 Worker 为什么还能醒来？沿着 ETL-Agent 的运行事实、认领与终态写入逐层拆解。",
+      "category": "数据工程",
+      "topic": "engineering",
+      "tags": [
+        "Outbox",
+        "SQLAlchemy",
+        "并发",
+        "ETL"
+      ],
+      "kind": "工程实践",
+      "date": "2026-10-20",
+      "order": 2,
+      "level": "进阶",
+      "status": "已核对源码",
+      "scope": "核对 Commit、Outbox、认领与租约辅助函数；未重跑外部数据面。",
+      "sources": [
+        {
+          "path": "api/app/services/commit.py",
+          "start": 117,
+          "end": 223,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/api/app/services/commit.py#L117-L223"
+        },
+        {
+          "path": "api/app/services/outbox.py",
+          "start": 79,
+          "end": 229,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/api/app/services/outbox.py#L79-L229"
+        },
+        {
+          "path": "api/app/services/execution.py",
+          "start": 131,
+          "end": 166,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/api/app/services/execution.py#L131-L166"
+        },
+        {
+          "path": "api/app/services/lease.py",
+          "start": 52,
+          "end": 153,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/api/app/services/lease.py#L52-L153"
+        }
+      ]
+    },
+    {
+      "id": "rrf-rerank",
+      "title": "RRF 与 Rerank：多路结果到底在哪里汇合",
+      "summary": "四路检索不等于四路融合。追踪 RRF、Web 候选与重排输入，区分算法能力和本地实现的取舍。",
+      "category": "RAG 与检索",
+      "topic": "rag",
+      "tags": [
+        "RAG",
+        "RRF",
+        "Rerank",
+        "HyDE"
+      ],
+      "kind": "源码解读",
+      "date": "2026-10-20",
+      "order": 3,
+      "level": "进阶",
+      "status": "已核对源码",
+      "scope": "核对候选消费关系与降级分支，没有运行检索质量评测。",
+      "sources": [
+        {
+          "path": "app/query_process/agent/nodes/node_rrf.py",
+          "start": 80,
+          "end": 160,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/query_process/agent/nodes/node_rrf.py#L80-L160"
+        },
+        {
+          "path": "app/query_process/agent/nodes/node_rerank.py",
+          "start": 44,
+          "end": 199,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/query_process/agent/nodes/node_rerank.py#L44-L199"
+        }
+      ]
+    },
+    {
+      "id": "langgraph-interrupt",
+      "title": "LangGraph 人工介入：暂停之后如何安全恢复",
+      "summary": "从一个本地演示理解 interrupt、线程标识与恢复载荷，找出默认批准和副作用重复执行的边界。",
+      "category": "Agent 工作流",
+      "topic": "agent",
+      "tags": [
+        "LangGraph",
+        "HITL",
+        "状态机"
+      ],
+      "kind": "学习笔记",
+      "date": "2026-10-20",
+      "order": 4,
+      "level": "入门",
+      "status": "已核对源码",
+      "scope": "基于本地模拟演示与官方恢复语义，不涉及真实转账。",
+      "sources": [
+        {
+          "path": "content/references/langgraph-hitl-demo.md",
+          "start": 1,
+          "end": 37,
+          "repository": "xiaocha653830-tech.github.io",
+          "url": "https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io/blob/main/content/references/langgraph-hitl-demo.md#L1-L37"
+        }
+      ]
+    },
+    {
+      "id": "chunk-contract",
+      "title": "文档切片的契约：长度之外，还要保留什么",
+      "summary": "标题、代码缩进、来源元数据和失败批次，决定一个 chunk 是否能被检索、引用与排障。",
+      "category": "RAG 与检索",
+      "topic": "rag",
+      "tags": [
+        "RAG",
+        "文档切分",
+        "BGE-M3",
+        "Python"
+      ],
+      "kind": "工程实践",
+      "date": "2026-10-20",
+      "order": 5,
+      "level": "入门",
+      "status": "已核对源码",
+      "scope": "核对切分与向量化节点；建议代码为独立示例，未修改来源项目。",
+      "sources": [
+        {
+          "path": "app/import_process/agent/nodes/node_document_split.py",
+          "start": 34,
+          "end": 171,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/import_process/agent/nodes/node_document_split.py#L34-L171"
+        },
+        {
+          "path": "app/import_process/agent/nodes/node_bge_embedding.py",
+          "start": 35,
+          "end": 85,
+          "repository": "RAG-KnowledgeBase",
+          "url": "https://github.com/xiaocha653830-tech/RAG-KnowledgeBase/blob/main/app/import_process/agent/nodes/node_bge_embedding.py#L35-L85"
+        }
+      ]
+    },
+    {
+      "id": "unicode-roundtrip",
+      "title": "一个中文正则的变形：为什么成功状态还不够",
+      "summary": "一条仍然语法合法的规则，可能已在提交链路中改变含义。根据 ETL 故障记录理解提交后回读校验。",
+      "category": "数据工程",
+      "topic": "engineering",
+      "tags": [
+        "ETL",
+        "Unicode",
+        "故障排查",
+        "Python"
+      ],
+      "kind": "故障复盘",
+      "date": "2026-10-20",
+      "order": 6,
+      "level": "入门",
+      "status": "记录与代码核对",
+      "scope": "故障来自 README 历史记录；回读分支已静态核对，本次未复跑 ETL。",
+      "sources": [
+        {
+          "path": "README.md",
+          "start": 145,
+          "end": 195,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/README.md#L145-L195"
+        },
+        {
+          "path": "api/app/scripts/run_demo_managed_flow.py",
+          "start": 1,
+          "end": 14,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/api/app/scripts/run_demo_managed_flow.py#L1-L14"
+        },
+        {
+          "path": "api/app/scripts/run_demo_managed_flow.py",
+          "start": 150,
+          "end": 167,
+          "repository": "ETL-Agent",
+          "url": "https://github.com/xiaocha653830-tech/ETL-Agent/blob/main/api/app/scripts/run_demo_managed_flow.py#L150-L167"
+        }
+      ]
+    },
+    {
+      "id": "metadata-boundaries",
+      "title": "数据智能体的元数据：三种存储，三种职责",
+      "summary": "从 deep-agent 的依赖边界出发，整理字段、指标与字段值的分工，也明确当前构建能力仍是骨架。",
+      "category": "Agent 工作流",
+      "topic": "agent",
+      "tags": [
+        "元数据",
+        "Qdrant",
+        "Elasticsearch",
+        "架构设计"
+      ],
+      "kind": "架构笔记",
+      "date": "2026-10-20",
+      "order": 7,
+      "level": "入门",
+      "status": "骨架分析",
+      "scope": "区分已存在的构造函数与尚未实现的构建链路，后续方案为建议。",
+      "sources": [
+        {
+          "path": "app/services/meta_knowledge_service.py",
+          "start": 1,
+          "end": 31,
+          "repository": "Deep-Agent",
+          "url": "https://github.com/xiaocha653830-tech/Deep-Agent/blob/master/app/services/meta_knowledge_service.py#L1-L31"
+        },
+        {
+          "path": "app/repositories/qdrant/column_qdrant_repository.py",
+          "start": 1,
+          "end": 9,
+          "repository": "Deep-Agent",
+          "url": "https://github.com/xiaocha653830-tech/Deep-Agent/blob/master/app/repositories/qdrant/column_qdrant_repository.py#L1-L9"
+        },
+        {
+          "path": "app/repositories/es/value_es_repository.py",
+          "start": 1,
+          "end": 10,
+          "repository": "Deep-Agent",
+          "url": "https://github.com/xiaocha653830-tech/Deep-Agent/blob/master/app/repositories/es/value_es_repository.py#L1-L10"
+        }
+      ]
+    },
+    {
+      "id": "docx-markdown",
+      "title": "Word 转 Markdown：保住顺序，也认清损失",
+      "summary": "从本地转换工具理解段落顺序、样式识别、代码围栏与表格，建立转换后的质量检查。",
+      "category": "Python 工具",
+      "topic": "python",
+      "tags": [
+        "Python",
+        "Markdown",
+        "文档处理"
+      ],
+      "kind": "工具拆解",
+      "date": "2026-10-20",
+      "order": 8,
+      "level": "入门",
+      "status": "已核对源码",
+      "scope": "静态阅读转换与质检脚本，未重新转换课程原文件。",
+      "sources": [
+        {
+          "path": "content/references/docx2md-tools.md",
+          "start": 1,
+          "end": 32,
+          "repository": "xiaocha653830-tech.github.io",
+          "url": "https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io/blob/main/content/references/docx2md-tools.md#L1-L32"
+        }
+      ]
+    }
+  ]
+}
