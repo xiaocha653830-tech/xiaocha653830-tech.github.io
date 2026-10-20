@@ -4,7 +4,7 @@
 
 ## 阅读地址与托管方式
 
-目标仓库：[xiaocha653830-tech.github.io](https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io)。它是 GitHub Pages 用户站点仓库；站点地址为 `https://xiaocha653830-tech.github.io/`。仓库的 Pages 来源应设为 `main` 分支的根目录；首页为根目录的 `index.html`。上线状态需要在推送后以实际站点响应确认。
+目标仓库：[xiaocha653830-tech.github.io](https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io)。它是 GitHub Pages 用户站点仓库；站点地址为 `https://xiaocha653830-tech.github.io/`。Pages 来源已设为 `main` 分支的根目录；首页为根目录的 `index.html`。上线状态以实际站点响应确认。
 
 所有页面使用 hash 路由，无服务端重写要求。首屏内容、文章正文、字体和代码高亮文件都打包在站点中。Tailwind 和 Font Awesome 保留用户指定的 CDN，核心布局和交互由本地 CSS 与 JavaScript 提供。
 
