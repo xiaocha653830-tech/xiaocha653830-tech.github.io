@@ -17,6 +17,7 @@ const files = [
   ...catalog.articles.map(article => `content/articles/${article.id}.md`),
   'content/references/langgraph-hitl-demo.md',
   'content/references/docx2md-tools.md',
+  'content/references/llm-wiki-business.md',
   'scripts/build-content.mjs', 'scripts/build-site.mjs', 'README.md'
 ];
 async function listFiles(dir, prefix = '') {

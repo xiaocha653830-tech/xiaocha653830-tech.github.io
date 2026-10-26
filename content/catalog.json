@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-10-26",
   "topics": [
     {
       "id": "rag",
@@ -10,7 +10,8 @@
       "articles": [
         "rag-pipelines",
         "chunk-contract",
-        "rrf-rerank"
+        "rrf-rerank",
+        "llm-wiki-business"
       ]
     },
     {
@@ -112,6 +113,35 @@
     }
   ],
   "articles": [
+    {
+      "id": "llm-wiki-business",
+      "title": "聊到最后，我暂时不给问数项目加 Wiki",
+      "summary": "从 Wiki 的写入、读取和维护机制出发，讨论它在文档型 RAG 与 NL2SQL 中分别能承担什么工作。",
+      "category": "RAG 与检索",
+      "topic": "rag",
+      "tags": [
+        "LLM Wiki",
+        "RAG",
+        "NL2SQL",
+        "知识管理"
+      ],
+      "kind": "方案讨论",
+      "date": "2026-10-26",
+      "updated": "2026-10-26",
+      "order": 0,
+      "level": "入门",
+      "status": "机制与方案分析",
+      "scope": "基于既有 DeepSeek 对话和公开技术资料的方案分析，未验证问数效果或性能收益。",
+      "sources": [
+        {
+          "path": "content/references/llm-wiki-business.md",
+          "start": 1,
+          "end": 15,
+          "repository": "xiaocha653830-tech.github.io",
+          "url": "https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io/blob/main/content/references/llm-wiki-business.md#L1-L15"
+        }
+      ]
+    },
     {
       "id": "rag-pipelines",
       "title": "RAG 双管线：从文档导入到四路检索",
