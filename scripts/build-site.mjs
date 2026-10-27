@@ -12,6 +12,7 @@ const catalog = JSON.parse(await readFile(path.join(root, 'content/catalog.json'
 const files = [
   'index.html', 'styles.css', 'technical.css', 'app.js', 'content.generated.js', '.nojekyll',
   'assets/favicon.svg', 'assets/architecture.jpg', 'assets/barlow-condensed.woff2', 'assets/OFL.txt',
+  'assets/source-han-sans-cn-vf.woff2', 'assets/source-han-sans-LICENSE.txt',
   ...['marked.min.js','purify.min.js','highlight.min.js','highlight.css','marked-LICENSE.txt','dompurify-LICENSE.txt','highlight-LICENSE.txt'].map(name => `assets/vendor/${name}`),
   'content/catalog.json',
   ...catalog.articles.map(article => `content/articles/${article.id}.md`),
