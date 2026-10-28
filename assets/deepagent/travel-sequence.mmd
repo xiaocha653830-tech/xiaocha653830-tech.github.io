@@ -1,0 +1,60 @@
+---
+config:
+  theme: base
+  look: classic
+  fontFamily: 'Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, sans-serif'
+  themeVariables:
+    fontSize: '14px'
+    background: '#f9f9f5'
+    primaryColor: '#edf2e9'
+    primaryTextColor: '#151715'
+    primaryBorderColor: '#a5b6a0'
+    lineColor: '#386448'
+    actorBkg: '#edf2e9'
+    actorBorder: '#a5b6a0'
+    actorTextColor: '#151715'
+    actorLineColor: '#a5afa3'
+    signalColor: '#386448'
+    signalTextColor: '#151715'
+    noteBkgColor: '#e4ecdf'
+    noteBorderColor: '#bdcbb8'
+    noteTextColor: '#344632'
+    labelBoxBkgColor: '#edf2e9'
+    labelBoxBorderColor: '#a5b6a0'
+    labelTextColor: '#344632'
+    loopTextColor: '#344632'
+  sequence:
+    actorMargin: 18
+    width: 88
+    height: 34
+    diagramMarginX: 16
+    diagramMarginY: 14
+    messageMargin: 12
+    noteMargin: 6
+    boxMargin: 4
+    actorFontSize: 14
+    messageFontSize: 13
+    noteFontSize: 12
+    mirrorActors: false
+    useMaxWidth: false
+---
+sequenceDiagram
+    accTitle: 旅行规划的主要调用时序
+    accDescr: 地图与票务并行查询，结果汇合后由主代理整理并交给汇总代理，再返回用户。图中省略零散调用，纵向间距不代表实际耗时比例。
+    participant U as 用户
+    participant M as 主代理
+    participant A as 地图任务
+    participant T as 票务任务
+    participant S as 汇总代理
+    U->>M: 规划两日游
+    par 地图任务
+        M->>A: 派发地图任务
+    and 票务任务
+        M->>T: 派发票务任务
+    end
+    T-->>M: 票务结果 · 112.84 秒
+    A-->>M: 地图结果 · 371.72 秒
+    Note over M: 模型整理 · 30.00 秒
+    M->>S: 汇总查询结果
+    S-->>M: 汇总完成 · 82.90 秒
+    M-->>U: 返回旅行方案

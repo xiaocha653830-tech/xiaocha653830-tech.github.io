@@ -111,4 +111,8 @@ mark{background:#e5db92;color:inherit;padding:0 2px}
 @media(max-width:640px){.footer-top .footer-link{justify-self:stretch;width:100%}}
 
 .markdown-body img{display:block;max-width:100%;height:auto;margin:24px auto}
-.markdown-body img[src$="/travel-waterfall.png"]{width:auto;max-height:520px;object-fit:contain}
+.markdown-body .trace-comparison{--trace-image-height:360px;display:flex;gap:18px;align-items:flex-start;overflow-x:auto;margin:24px 0;padding:8px 0}
+.markdown-body .trace-comparison a{display:block;flex:0 0 auto}
+.markdown-body .trace-comparison img{width:auto;height:var(--trace-image-height);max-width:none;max-height:none;margin:0;object-fit:contain}
+
+@media(max-width:640px){.markdown-body .trace-comparison{--trace-image-height:280px}}

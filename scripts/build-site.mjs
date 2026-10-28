@@ -21,6 +21,7 @@ const files = [
   'content/references/llm-wiki-business.md',
   'content/references/deepagent-latency.md',
   'assets/deepagent/travel-waterfall.png', 'assets/deepagent/map-task.png',
+  'assets/deepagent/travel-sequence.svg', 'assets/deepagent/travel-sequence.mmd',
   'scripts/build-content.mjs', 'scripts/build-site.mjs', 'README.md'
 ];
 async function listFiles(dir, prefix = '') {

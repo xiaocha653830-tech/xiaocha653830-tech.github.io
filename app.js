@@ -105,7 +105,7 @@ function projectsPage() {
 function markdownHTML(markdown) {
   if (!window.marked || !window.DOMPurify) return `<pre class="markdown-fallback">${escapeHTML(markdown)}</pre>`;
   return DOMPurify.sanitize(marked.parse(markdown, {gfm:true, breaks:false}), {
-    ALLOWED_TAGS:['p','h2','h3','h4','ul','ol','li','a','pre','code','blockquote','strong','em','del','table','thead','tbody','tr','th','td','hr','br','img'],
+    ALLOWED_TAGS:['p','h2','h3','h4','ul','ol','li','a','pre','code','blockquote','strong','em','del','table','thead','tbody','tr','th','td','hr','br','img','div'],
     ALLOWED_ATTR:['href','title','class','start','align','src','alt','width','height','loading','decoding']
   });
 }
