@@ -12,9 +12,9 @@
 | 地图子代理 `map_agent` | 371.72 秒，约 6.2 分钟 | 地图领域的整项任务 |
 | 汇总代理 `summary_agent` | 82.90 秒，约 1.4 分钟 | 后续报告整理与文件处理 |
 
-![LangSmith 整次运行的耗时分布](./assets/deepagent/travel-waterfall.png)
+[![LangSmith 整次运行的耗时分布，点击查看原图](./assets/deepagent/travel-waterfall.png)](./assets/deepagent/travel-waterfall.png)
 
-*图 1　整次运行耗时 518.13 秒，较长的工具任务结束后，流程仍在继续。*
+*图 1　整次运行耗时 518.13 秒，较长的工具任务结束后，流程仍在继续。点击图片可查看原图。*
 
 这三个数字来自[同一条 LangSmith trace](https://smith.langchain.com/o/b5ed5e99-fce4-454b-ad9f-2a52b6c54a5a/a/travel-agent-debug/projects/p/7d950f1a-61d5-4958-87e1-5d907d1a916b?peek=01a17cac-b007-75b0-a1c9-e7d34d5d49d8&peeked_trace=01a17cac-616b-7236-b060-cd39d9b75317&runTab=details)。整次运行已经包含各阶段，地图节点也包含内部的模型和工具调用，不能把表中的数字直接相加。371.72 秒对应的是地图子任务，不能据此说高德某个接口响应了六分钟。
 

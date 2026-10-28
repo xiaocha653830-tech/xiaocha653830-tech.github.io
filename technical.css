@@ -111,3 +111,4 @@ mark{background:#e5db92;color:inherit;padding:0 2px}
 @media(max-width:640px){.footer-top .footer-link{justify-self:stretch;width:100%}}
 
 .markdown-body img{display:block;max-width:100%;height:auto;margin:24px auto}
+.markdown-body img[src$="/travel-waterfall.png"]{width:auto;max-height:520px;object-fit:contain}
