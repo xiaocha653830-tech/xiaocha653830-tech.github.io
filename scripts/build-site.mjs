@@ -19,6 +19,8 @@ const files = [
   'content/references/langgraph-hitl-demo.md',
   'content/references/docx2md-tools.md',
   'content/references/llm-wiki-business.md',
+  'content/references/deepagent-latency.md',
+  'assets/deepagent/travel-waterfall.png', 'assets/deepagent/map-task.png',
   'scripts/build-content.mjs', 'scripts/build-site.mjs', 'README.md'
 ];
 async function listFiles(dir, prefix = '') {

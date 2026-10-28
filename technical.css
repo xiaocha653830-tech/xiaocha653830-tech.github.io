@@ -109,3 +109,5 @@ mark{background:#e5db92;color:inherit;padding:0 2px}
 .footer-top .footer-link{justify-self:end;width:min(320px,100%)}
 .home-note .note-label .latin{margin-left:0}
 @media(max-width:640px){.footer-top .footer-link{justify-self:stretch;width:100%}}
+
+.markdown-body img{display:block;max-width:100%;height:auto;margin:24px auto}

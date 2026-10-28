@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-10-28",
   "topics": [
     {
       "id": "rag",
@@ -22,7 +22,8 @@
       "description": "状态、人工介入与元数据，把智能体的边界说清楚。",
       "articles": [
         "langgraph-interrupt",
-        "metadata-boundaries"
+        "metadata-boundaries",
+        "deepagent-latency"
       ]
     },
     {
@@ -113,6 +114,35 @@
     }
   ],
   "articles": [
+    {
+      "id": "deepagent-latency",
+      "title": "DeepAgent 已经并行，为什么还要等八分钟？",
+      "summary": "从一次 518 秒的旅行规划，检查任务范围、接口限流和 MCP 返回冗余，讨论怎样减少等待与模型往返。",
+      "category": "Agent 工作流",
+      "topic": "agent",
+      "tags": [
+        "DeepAgent",
+        "MCP",
+        "LangSmith",
+        "性能分析"
+      ],
+      "kind": "运行分析",
+      "date": "2026-10-28",
+      "updated": "2026-10-28",
+      "order": -1,
+      "level": "入门",
+      "status": "运行记录与方案分析",
+      "scope": "核对 LangSmith 页面中的节点耗时、任务输入及可见工具返回；未完成逐节点 token 与重试统计，优化建议尚未实测。",
+      "sources": [
+        {
+          "path": "content/references/deepagent-latency.md",
+          "start": 1,
+          "end": 21,
+          "repository": "xiaocha653830-tech.github.io",
+          "url": "https://github.com/xiaocha653830-tech/xiaocha653830-tech.github.io/blob/main/content/references/deepagent-latency.md#L1-L21"
+        }
+      ]
+    },
     {
       "id": "llm-wiki-business",
       "title": "聊到最后，我暂时不给问数项目加 Wiki",
